@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
-class GestorDinamico extends JFrame {
+public class GestorDinamico extends JFrame {
     private ListaDinamica<Pareja> listaParejas;
     private DefaultListModel<String> modeloLista;
     private JList<String> vistaParejas;
