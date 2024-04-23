@@ -1,16 +1,26 @@
 package Caso6;
+
+import Caso6.AnálisisOrganizacion.AnalizadorTransacciones;
+import Caso6.AnálisisOrganizacion.OrdenadorNombres;
+import Caso6.AnálisisOrganizacion.OrganizadorVentas;
+import Caso6.AnálisisOrganizacion.Venta;
+import Caso6.GestiónDatosDinamicos.ListaDinamica;
+import Caso6.GestiónDatosDinamicos.Pareja;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.io.File;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.Date;
+import java.util.List;
+import java.util.TreeSet;
 
 public class SistemaIntegral extends JFrame {
-    private TreeMap<String, String> archivoARuta = new TreeMap<>();
-    private TreeMap<Integer, Character> numeroALetra = new TreeMap<>();
-    private TreeMap<Integer, String> numeroATexto = new TreeMap<>();
-    private JList<String> listaArchivos;
+    private AnalizadorTransacciones analizadorTransacciones;
+    private OrdenadorNombres ordenadorNombres;
+    private OrganizadorVentas organizadorVentas;
+    private ListaDinamica<Double> listaReales;
+    private ListaDinamica<Pareja> listaParejas;
+    private JList<String> listaResultados;
     private DefaultListModel<String> modeloLista;
 
     public SistemaIntegral() {
@@ -20,73 +30,55 @@ public class SistemaIntegral extends JFrame {
         setLayout(new BorderLayout());
 
         // Panel para botones
-        JPanel panelBotones = new JPanel();
-        JButton btnIndexarDirectorio = new JButton("Indexar Directorio");
-        JButton btnAsociarNumeros = new JButton("Asociar Números");
-        JButton btnMostrarAsociaciones = new JButton("Mostrar Asociaciones");
+        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JButton btnTransacciones = new JButton("Filtrar Transacciones");
+        JButton btnNombres = new JButton("Ordenar Nombres");
+        JButton btnVentas = new JButton("Organizar Ventas");
         modeloLista = new DefaultListModel<>();
-        listaArchivos = new JList<>(modeloLista);
-        JScrollPane scrollPane = new JScrollPane(listaArchivos);
+        listaResultados = new JList<>(modeloLista);
+        JScrollPane scrollPane = new JScrollPane(listaResultados);
 
-        btnIndexarDirectorio.addActionListener(this::accionIndexar);
-        btnAsociarNumeros.addActionListener(this::accionAsociarNumeros);
-        btnMostrarAsociaciones.addActionListener(this::accionMostrarAsociaciones);
+        // Agregar acciones a los botones
+        btnTransacciones.addActionListener(this::accionFiltrarTransacciones);
+        btnNombres.addActionListener(this::accionOrdenarNombres);
+        btnVentas.addActionListener(this::accionOrganizarVentas);
 
-        panelBotones.add(btnIndexarDirectorio);
-        panelBotones.add(btnAsociarNumeros);
-        panelBotones.add(btnMostrarAsociaciones);
+        panelBotones.add(btnTransacciones);
+        panelBotones.add(btnNombres);
+        panelBotones.add(btnVentas);
         add(panelBotones, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
 
-        inicializarAsociaciones();
+        // Inicializar componentes y datos
+        inicializarComponentes();
     }
 
-    private void accionIndexar(ActionEvent e) {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int opcion = fileChooser.showOpenDialog(this);
-        if (opcion == JFileChooser.APPROVE_OPTION) {
-            File directorioSeleccionado = fileChooser.getSelectedFile();
-            indexarDirectorioRecursivo(directorioSeleccionado);
-            mostrarArchivos();
-        }
-    }
-
-    private void indexarDirectorioRecursivo(File directorio) {
-        File[] archivos = directorio.listFiles();
-        if (archivos != null) {
-            for (File archivo : archivos) {
-                if (archivo.isDirectory()) {
-                    indexarDirectorioRecursivo(archivo);
-                } else {
-                    archivoARuta.put(archivo.getName(), archivo.getAbsolutePath());
-                }
-            }
-        }
-    }
-
-    private void mostrarArchivos() {
+    private void accionFiltrarTransacciones(ActionEvent e) {
+        // Aquí iría la lógica para filtrar transacciones
         modeloLista.clear();
-        archivoARuta.forEach((nombre, ruta) -> modeloLista.addElement(nombre + " - " + ruta));
+        modeloLista.addElement("Filtrado de transacciones completado.");
     }
 
-    private void accionAsociarNumeros(ActionEvent e) {
+    private void accionOrdenarNombres(ActionEvent e) {
+        // Aquí iría la lógica para ordenar nombres
         modeloLista.clear();
-        numeroALetra.forEach((numero, letra) -> modeloLista.addElement(numero + " -> " + letra));
-        numeroATexto.forEach((numero, texto) -> modeloLista.addElement(numero + " -> " + texto));
+        modeloLista.addElement("Nombres ordenados completados.");
     }
 
-    private void accionMostrarAsociaciones(ActionEvent e) {
+    private void accionOrganizarVentas(ActionEvent e) {
+        // Aquí iría la lógica para organizar ventas
         modeloLista.clear();
-        numeroALetra.forEach((numero, letra) -> modeloLista.addElement("Número: " + numero + ", Letra: " + letra));
-        numeroATexto.forEach((numero, texto) -> modeloLista.addElement("Número: " + numero + ", Texto: " + texto));
+        modeloLista.addElement("Organización de ventas completada.");
     }
 
-    private void inicializarAsociaciones() {
-        numeroALetra.put(1, 'A');
-        numeroALetra.put(2, 'B');
-        numeroATexto.put(1, "Uno");
-        numeroATexto.put(2, "Dos");
+    private void inicializarComponentes() {
+        // Aquí se inicializarían los componentes de datos, como listas dinámicas, analizadores, etc.
+        listaReales = new ListaDinamica<>();
+        listaParejas = new ListaDinamica<>();
+        // Ejemplo de inicialización de listas de ventas, nombres, etc.
+        ordenadorNombres = new OrdenadorNombres();
+        analizadorTransacciones = new AnalizadorTransacciones(List.of(new Venta(new Date(), 100.0)));
+        organizadorVentas = new OrganizadorVentas();
     }
 
     public static void main(String[] args) {
@@ -96,5 +88,6 @@ public class SistemaIntegral extends JFrame {
         });
     }
 }
+
 
 
