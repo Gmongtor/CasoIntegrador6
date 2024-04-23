@@ -3,6 +3,7 @@ package Caso6.AnálisisOrganizacion;
 import java.util.Date;
 
 public class Venta {
+    private String nombre;
     private Date fecha;
     private double monto;
 
