@@ -8,8 +8,8 @@ import Caso6.VentanaIndexador;  // Importar la clase VentanaIndexador
 import javax.swing.*;
 import java.awt.*;
 
-public class VENTANA extends JFrame {
-    public VENTANA() {
+public class VENTANA_PRINCIPAL extends JFrame {
+    public VENTANA_PRINCIPAL() {
         super("Análisis de Datos");
         setSize(500, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,7 +32,7 @@ public class VENTANA extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new VENTANA().setVisible(true));
+        SwingUtilities.invokeLater(() -> new VENTANA_PRINCIPAL().setVisible(true));
     }
 }
 
