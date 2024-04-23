@@ -1,5 +1,6 @@
 package Caso6.SistemaIndexacion;
 
+import javax.swing.*;
 import java.io.File;
 import java.util.Map;
 import java.util.TreeMap;
@@ -29,9 +30,12 @@ public class IndexadorDeArchivos {
         }
     }
 
-    public void listarArchivos() {
+    public Map<String, String> getArchivos() {
+        return archivoARuta;
+    }
+    public void listarArchivos(JTextArea areaTexto) {
         for (Map.Entry<String, String> entrada : archivoARuta.entrySet()) {
-            System.out.println(entrada.getKey() + " - " + entrada.getValue());
+            areaTexto.append(entrada.getKey() + " - " + entrada.getValue() + "\n");
         }
     }
 }
