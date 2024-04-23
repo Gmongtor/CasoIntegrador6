@@ -29,5 +29,9 @@ public class GestorVentas {
             }
         }
     }
+
+    public Venta[] getVentas() {
+        return ventas.toArray(new Venta[0]);
+    }
 }
 
