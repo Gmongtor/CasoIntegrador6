@@ -6,7 +6,7 @@ public class Venta {
     private Date fecha;
     private double monto;
 
-    public Venta(Date fecha, double monto) {
+    public Venta(String nombre, Date fecha, double monto) {
         this.fecha = fecha;
         this.monto = monto;
     }
@@ -17,5 +17,18 @@ public class Venta {
 
     public double getMonto() {
         return monto;
+    }
+
+    public Object getNombre() {
+        return null;
+    }
+
+    public void setNombre(String nuevoNombre) {
+    }
+
+    public void setFecha(Date nuevaFecha) {
+    }
+
+    public void setMonto(double nuevoMonto) {
     }
 }
