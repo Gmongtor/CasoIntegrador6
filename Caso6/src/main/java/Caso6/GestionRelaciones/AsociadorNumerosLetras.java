@@ -1,4 +1,4 @@
-package GestionRelaciones;
+package Caso6.GestionRelaciones;
 import java.util.HashMap;
 import java.util.Map;
 

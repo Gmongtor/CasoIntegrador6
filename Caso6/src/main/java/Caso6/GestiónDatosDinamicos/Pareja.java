@@ -1,4 +1,4 @@
-package GestiónDatosDinamicos;
+package Caso6.GestiónDatosDinamicos;
 public class Pareja {
     private int primerElemento;
     private int segundoElemento;

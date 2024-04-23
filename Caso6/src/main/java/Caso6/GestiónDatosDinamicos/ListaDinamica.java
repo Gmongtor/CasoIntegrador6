@@ -1,4 +1,4 @@
-package GestiónDatosDinamicos;
+package Caso6.GestiónDatosDinamicos;
 
 import java.util.ArrayList;
 import java.util.List;

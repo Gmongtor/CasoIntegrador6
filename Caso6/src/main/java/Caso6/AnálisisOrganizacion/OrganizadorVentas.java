@@ -1,4 +1,4 @@
-package AnálisisOrganizacion;
+package Caso6.AnálisisOrganizacion;
 
 import java.util.*;
 
